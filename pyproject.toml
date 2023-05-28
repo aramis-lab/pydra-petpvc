@@ -36,3 +36,10 @@ dependencies = [
 Documentation = "https://github.com/ghisvail/pydra-petpvc#readme"
 Issues = "https://github.com/ghisvail/pydra-petpvc/issues"
 Source = "https://github.com/ghisvail/pydra-petpvc"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+  "--doctest-modules",
+  "--doctest-continue-on-failure",
+]
