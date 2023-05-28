@@ -43,3 +43,10 @@ addopts = [
   "--doctest-modules",
   "--doctest-continue-on-failure",
 ]
+
+[tool.black]
+target-version = ["py37"]
+line-length = 120
+
+[tool.isort]
+profile = "black"
