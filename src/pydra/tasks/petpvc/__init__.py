@@ -7,5 +7,6 @@ Pydra tasks for PETPVC.
 >>> from pydra.tasks import petpvc
 """
 
+from . import utils
 from .petpvc import PETPVC
 from .pvc_simulate import PVCSimulate
