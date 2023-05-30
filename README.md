@@ -1,5 +1,7 @@
 # pydra-petpvc
 
+![][status-test]
+
 ----
 
 Pydra tasks for PETPVC.
@@ -59,3 +61,5 @@ This project is distributed under the terms of the [Apache License, Version 2.0]
 [petpvc-conda]: https://anaconda.org/conda-forge/petpvc
 
 [pydra]: https://pydra.readthedocs.io/
+
+[status-test]: https://github.com/aramis-lab/pydra-petpvc/actions/workflows/test.yaml/badge.svg
