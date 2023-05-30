@@ -9,4 +9,3 @@ Pydra tasks for PETPVC.
 
 from . import utils
 from .petpvc import PETPVC
-from .pvc_simulate import PVCSimulate
