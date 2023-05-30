@@ -11,9 +11,7 @@ Iterative Yang with a 6-millimeter PSF:
 ...     input_image="input.nii",
 ...     input_mask="mask.nii",
 ...     pvc_method="IY",
-...     fwhm_x=6.0,
-...     fwhm_y=6.0,
-...     fwhm_z=6.0,
+...     fwhm=(6.0, 6.0, 6.0),
 ... )
 >>> task.cmdline    # doctest: +ELLIPSIS
 'petpvc --input input.nii --mask mask.nii --output ...input_pvc.nii --pvc IY -x 6.0 -y 6.0 -z 6.0 ...'
@@ -22,6 +20,7 @@ Iterative Yang with a 6-millimeter PSF:
 __all__ = ["PETPVC"]
 
 from os import PathLike
+from typing import Tuple
 
 from attrs import define, field
 from pydra.engine.specs import ShellSpec, SpecInfo
@@ -73,16 +72,12 @@ class PETPVCSpec(ShellSpec):
         }
     )
 
-    fwhm_x: float = field(
-        metadata={"help_string": "FWHM of the PSF along the x-axis", "mandatory": True, "argstr": "-x"}
-    )
-
-    fwhm_y: float = field(
-        metadata={"help_string": "FWHM of the PSF along the y-axis", "mandatory": True, "argstr": "-y"}
-    )
-
-    fwhm_z: float = field(
-        metadata={"help_string": "FWHM of the PSF along the z-axis", "mandatory": True, "argstr": "-z"}
+    fwhm: Tuple[float, float, float] = field(
+        metadata={
+            "help_string": "FWHM of the PSF along x, y and z",
+            "mandatory": True,
+            "formatter": lambda fwhm: f"-x {str(fwhm[0])} -y {str(fwhm[1])} -z {str(fwhm[2])}",
+        }
     )
 
     debug: bool = field(metadata={"help_string": "print debug information", "argstr": "-d"})
