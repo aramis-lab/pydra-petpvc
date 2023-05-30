@@ -1,5 +1,8 @@
 # pydra-petpvc
 
+[![PyPI - Version][pypi-version]][pypi-project]
+[![PyPI - Python Version][pypi-pyversions]][pypi-project]
+[![PyPI - Downloads][pypi-downloads]][pypi-project]
 ![][status-test]
 
 ----
@@ -61,5 +64,13 @@ This project is distributed under the terms of the [Apache License, Version 2.0]
 [petpvc-conda]: https://anaconda.org/conda-forge/petpvc
 
 [pydra]: https://pydra.readthedocs.io/
+
+[pypi-downloads]: https://static.pepy.tech/badge/pydra-petpvc
+
+[pypi-project]: https://pypi.org/project/pydra-petpvc
+
+[pypi-pyversions]: https://img.shields.io/pypi/pyversions/pydra-petpvc.svg
+
+[pypi-version]: https://img.shields.io/pypi/v/pydra-petpvc.svg
 
 [status-test]: https://github.com/aramis-lab/pydra-petpvc/actions/workflows/test.yaml/badge.svg
