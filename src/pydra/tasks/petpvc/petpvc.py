@@ -11,20 +11,23 @@ Iterative Yang with a 6-millimeter PSF:
 ...     input_image="input.nii",
 ...     input_mask="mask.nii",
 ...     pvc_method="IY",
-...     fwhm=(6.0, 6.0, 6.0),
+...     fwhm_x=6.0,
+...     fwhm_y=6.0,
+...     fwhm_z=6.0,
 ... )
 >>> task.cmdline    # doctest: +ELLIPSIS
-'petpvc --input input.nii --mask mask.nii --output ...input_pvc.nii --pvc IY -x 6.0 -y 6.0 -z 6.0 ...'
+'petpvc --input input.nii --mask mask.nii --output ...input_pvc.nii --pvc IY ... -x 6.0 -y 6.0 -z 6.0'
 """
 
 __all__ = ["PETPVC"]
 
 from os import PathLike
-from typing import Tuple
 
 from attrs import define, field
 from pydra.engine.specs import ShellSpec, SpecInfo
 from pydra.engine.task import ShellCommandTask
+
+from .specs import FWHMSpec
 
 
 @define(kw_only=True)
@@ -72,14 +75,6 @@ class PETPVCSpec(ShellSpec):
         }
     )
 
-    fwhm: Tuple[float, float, float] = field(
-        metadata={
-            "help_string": "FWHM of the PSF along x, y and z",
-            "mandatory": True,
-            "formatter": lambda fwhm: f"-x {str(fwhm[0])} -y {str(fwhm[1])} -z {str(fwhm[2])}",
-        }
-    )
-
     debug: bool = field(metadata={"help_string": "print debug information", "argstr": "-d"})
 
     num_iterations_for_iterative_yang: int = field(
@@ -116,4 +111,4 @@ class PETPVC(ShellCommandTask):
 
     executable = "petpvc"
 
-    input_spec = SpecInfo(name="Inputs", bases=(PETPVCSpec,))
+    input_spec = SpecInfo(name="Inputs", bases=(PETPVCSpec, FWHMSpec))
