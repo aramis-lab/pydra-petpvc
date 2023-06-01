@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pydra-petpvc"
-version = "0.0.2"
+version = "0.0.3"
 description = 'Pydra tasks for PETPVC'
 readme = "README.md"
 requires-python = ">=3.7"
