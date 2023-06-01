@@ -9,14 +9,14 @@ Iterative Yang with a 6-millimeter PSF:
 
 >>> task = PETPVC(
 ...     input_image="input.nii",
-...     input_mask="mask.nii",
+...     mask_image="mask.nii",
 ...     pvc_method="IY",
 ...     fwhm_x=6.0,
 ...     fwhm_y=6.0,
 ...     fwhm_z=6.0,
 ... )
 >>> task.cmdline    # doctest: +ELLIPSIS
-'petpvc --input input.nii --mask mask.nii --output ...input_pvc.nii --pvc IY ... -x 6.0 -y 6.0 -z 6.0'
+'petpvc --input input.nii --output ...input_pvc.nii --mask mask.nii --pvc IY ... -x 6.0 -y 6.0 -z 6.0'
 """
 
 __all__ = ["PETPVC"]
@@ -36,11 +36,11 @@ class PETPVCSpec(ShellSpec):
 
     input_image: PathLike = field(metadata={"help_string": "input image", "mandatory": True, "argstr": "--input"})
 
-    input_mask: PathLike = field(metadata={"help_string": "input mask", "mandatory": True, "argstr": "--mask"})
-
     output_image: str = field(
         metadata={"help_string": "output image", "argstr": "--output", "output_file_template": "{input_image}_pvc"}
     )
+
+    mask_image: PathLike = field(metadata={"help_string": "mask image", "argstr": "--mask"})
 
     pvc_method: str = field(
         metadata={
